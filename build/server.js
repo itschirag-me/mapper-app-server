@@ -10,8 +10,7 @@ const api_1 = __importDefault(require("./routes/api"));
 const cors_1 = __importDefault(require("cors"));
 const controller_1 = require("./controller");
 const node_cron_1 = __importDefault(require("node-cron"));
-node_cron_1.default.schedule("0 0 * * *", () => {
-});
+node_cron_1.default.schedule("0 0 * * *", () => { });
 const app = (0, express_1.default)();
 // const corsOption = {
 //   origin: [
@@ -24,6 +23,7 @@ app
     .use((0, cors_1.default)())
     .use(express_1.default.urlencoded({ extended: false }))
     .use(express_1.default.json())
+    .get("/healthz", controller_1.getHealth)
     .use("/api", api_1.default)
     .use(controller_1.handleError)
     .listen(keys_1.default.port, () => {
